@@ -107,17 +107,7 @@ Tech mapping used in the app:
    heroku open
    ```
 
-### AWS (simple option)
 
-- Deploy on EC2 with Apache/PHP.
-- Use Amazon RDS (MySQL), MongoDB Atlas (or EC2 MongoDB), and ElastiCache Redis.
-- Point Apache document root to `public/`.
-
-## Submission Checklist
-
-1. Push code to GitHub.
-2. Host app on Heroku or AWS.
-3. Share GitHub repo URL + hosted URL in the GUVI submission/mailer (`dev@guvi.in`).
 
 ## Notes
 
