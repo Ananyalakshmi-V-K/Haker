@@ -82,32 +82,6 @@ Tech mapping used in the app:
 - Recent logs table
 - Redis cache for streak summary to reduce repeated calculations
 
-## Deployment
-
-### Heroku
-
-1. Create app and push:
-
-   ```bash
-   heroku create <your-app-name>
-   git push heroku main
-   ```
-
-2. Set config vars from `.env` in Heroku dashboard (`Settings` → `Config Vars`).
-
-3. Provision services:
-
-   - MySQL (ClearDB or external MySQL)
-   - MongoDB Atlas
-   - Redis (Heroku Redis)
-
-4. Open deployed app:
-
-   ```bash
-   heroku open
-   ```
-
-
 
 ## Notes
 
