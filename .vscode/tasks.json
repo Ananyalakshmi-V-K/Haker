@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run GUVI App",
+			"type": "shell",
+			"command": "php",
+			"args": [
+				"-S",
+				"localhost:8000",
+				"-t",
+				"public"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Run GUVI App",
+			"type": "shell",
+			"command": "php",
+			"args": [
+				"-S",
+				"localhost:8000",
+				"-t",
+				"public"
+			],
+			"isBackground": true
+		}
+	]
+}
