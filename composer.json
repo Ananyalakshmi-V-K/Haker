@@ -2,10 +2,14 @@
   "name": "guvi/login-starter",
   "description": "AJAX login starter with MySQL, MongoDB, and Redis",
   "type": "project",
+  "config": {
+    "platform-check": false,
+    "allow-plugins": false
+  },
   "require": {
     "ext-pdo": "*",
-    "mongodb/mongodb": "^2.0",
     "predis/predis": "^2.2",
-    "vlucas/phpdotenv": "^5.6"
+    "vlucas/phpdotenv": "^5.6",
+    "mongodb/mongodb": "^2.0"
   }
 }

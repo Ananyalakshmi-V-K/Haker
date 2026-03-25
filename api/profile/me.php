@@ -48,6 +48,9 @@ try {
                 'name' => $doc['name'] ?? ($session['full_name'] ?? ''),
                 'email' => $doc['email'] ?? $email,
                 'role' => $doc['role'] ?? 'user',
+                'age' => isset($doc['age']) ? (int) $doc['age'] : null,
+                'dob' => $doc['dob'] ?? '',
+                'contact' => $doc['contact'] ?? '',
             ],
         ],
     ]);

@@ -50,12 +50,18 @@
   function renderProfile(profile) {
     currentProfile = {
       name: String(profile.name || ''),
-      email: String(profile.email || '')
+      email: String(profile.email || ''),
+      age: profile.age ? Number(profile.age) : null,
+      dob: String(profile.dob || ''),
+      contact: String(profile.contact || '')
     };
 
     $('#profileAvatarText').text(getInitials(currentProfile.name, currentProfile.email));
     $('#profileName').val(currentProfile.name || '-');
     $('#profileEmail').val(currentProfile.email || '-');
+    $('#profileAge').val(currentProfile.age || '');
+    $('#profileDob').val(currentProfile.dob || '');
+    $('#profileContact').val(currentProfile.contact || '');
     $('#headerUserName').text(currentProfile.name || 'User');
     $('#headerUserEmail').text(currentProfile.email || 'email@example.com');
   }
@@ -307,6 +313,60 @@
       })
       .always(function () {
         $button.prop('disabled', false).text('Set Password');
+      });
+  });
+
+  $('#updateProfileBtn').on('click', function () {
+    const $button = $('#updateProfileBtn');
+    const age = $('#profileAge').val().trim();
+    const dob = $('#profileDob').val().trim();
+    const contact = $('#profileContact').val().trim();
+
+    const payload = {};
+    if (age) {
+      payload.age = Number(age);
+      if (payload.age < 0 || payload.age > 150) {
+        setProfileMessage('Age must be between 0 and 150.', 'error');
+        return;
+      }
+    }
+
+    if (dob) {
+      payload.dob = dob;
+    }
+
+    if (contact) {
+      payload.contact = contact;
+    }
+
+    if (!Object.keys(payload).length) {
+      setProfileMessage('Please fill in at least one field to update.', 'error');
+      return;
+    }
+
+    $button.prop('disabled', true).text('Saving...');
+    $.ajax({
+      url: apiBase + '/profile/update.php',
+      method: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+      headers: { Authorization: 'Bearer ' + getToken() },
+      data: JSON.stringify(payload)
+    })
+      .done(function (response) {
+        if (response.data && response.data.profile) {
+          currentProfile.age = response.data.profile.age || null;
+          currentProfile.dob = response.data.profile.dob || '';
+          currentProfile.contact = response.data.profile.contact || '';
+        }
+        setProfileMessage('Profile updated successfully.', 'success');
+      })
+      .fail(function (xhr) {
+        const err = xhr.responseJSON?.error || 'Failed to update profile.';
+        setProfileMessage(err, 'error');
+      })
+      .always(function () {
+        $button.prop('disabled', false).text('Save Profile');
       });
   });
 

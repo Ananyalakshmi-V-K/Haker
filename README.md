@@ -28,51 +28,43 @@ Tech mapping used in the app:
 
 ## Local Setup
 
-1. Install dependencies:
+### Prerequisites
+- PHP 8.0+
+- MySQL 8.0+
+- Composer
+- Redis (optional, can be on EC2)
+- MongoDB (optional, can use MongoDB Atlas)
 
+### Steps
+
+1. **Install dependencies:**
    ```bash
    composer install
    ```
 
-2. Configure env:
 
+   ```
+
+3. **Initialize database:**
    ```bash
-   cp .env.example .env
+   php -r "
+   \$pdo = new PDO('mysql:host=localhost', 'root', '');
+   \$pdo->exec('CREATE DATABASE IF NOT EXISTS guvi_app DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+   \$pdo = new PDO('mysql:host=localhost;dbname=guvi_app', 'root', '');
+   \$schema = file_get_contents('scripts/schema.sql');
+   \$pdo->exec(\$schema);
+   echo 'Database initialized successfully!';
+   "
    ```
 
-   Fill your MySQL/MongoDB/Redis values in `.env`.
-
-3. Create MySQL schema/table/sample user:
-
-   ```bash
-   mysql -u root -p < scripts/schema.sql
-   ```
-
-4. Insert sample habit logs in MongoDB (optional starter data):
-
-   ```javascript
-   use guvi_app
-   db.habit_logs.insertMany([
-     { user_id: 1, habit: "gym", date: "2026-03-20", value: 1, created_at: 0, updated_at: 0 },
-     { user_id: 1, habit: "study", date: "2026-03-21", value: 2, created_at: 0, updated_at: 0 },
-     { user_id: 1, habit: "water", date: "2026-03-22", value: 8, created_at: 0, updated_at: 0 }
-   ])
-   ```
-
-5. Start app locally:
-
+4. **Start PHP development server:**
    ```bash
    php -S localhost:8000 -t public
    ```
 
-6. Open:
-
+5. **Open in browser:**
    - `http://localhost:8000`
 
-## Test Credentials
-
-- Email: `demo@guvi.in`
-- Password: `Pass@123`
 
 ## Habit Tracker Features
 

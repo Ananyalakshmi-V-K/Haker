@@ -52,12 +52,27 @@
             <label class="form-label" for="profileEmail">Email</label>
             <input id="profileEmail" class="form-control" type="text" readonly />
           </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="profileAge">Age</label>
+            <input id="profileAge" class="form-control" type="number" min="0" max="150" placeholder="Your age" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="profileDob">Date of Birth</label>
+            <input id="profileDob" class="form-control" type="date" />
+          </div>
+          <div class="col-12 col-md-12">
+            <label class="form-label" for="profileContact">Contact</label>
+            <input id="profileContact" class="form-control" type="tel" placeholder="Phone or contact info" />
+          </div>
           <div class="col-12 col-md-8">
             <label class="form-label" for="newPassword">Set Password</label>
             <input id="newPassword" class="form-control" type="password" placeholder="At least 6 characters" autocomplete="new-password" />
           </div>
           <div class="col-12 col-md-4 d-flex align-items-end">
             <button id="setPasswordBtn" type="button" class="btn btn-primary w-100">Set Password</button>
+          </div>
+          <div class="col-12">
+            <button id="updateProfileBtn" type="button" class="btn btn-success w-100">Save Profile</button>
           </div>
         </div>
         <div id="profileMessage" class="small mt-3" role="status" aria-live="polite"></div>
